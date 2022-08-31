@@ -1,6 +1,4 @@
 // Cards
-let deck = ["A",2,3,4,5,6,7,8,9,10,"J","Q","K"]
-
 function getRandomCard() {
     let card = Math.floor(Math.random() * 13) + 1
     if(card === 1) {
@@ -10,23 +8,30 @@ function getRandomCard() {
     } else {
         return card
     }
-    
 }
 
+let player = {
+    cards : [],
+    chips : 0,
+}
 
+let dealer = {
+    cards : []
+}
 
 // Card Status
 aliveStatus = ""
 message = ""
 
-
 // Messages
 let messageEl = document.getElementById("message-el")
 let handEl = document.getElementById("hand-el")
+let dealerEl = document.getElementById("dealer-el")
 
 // Button toggles
 let tapButton = document.getElementById("tapButton")
 let playButton = document.getElementById("playButton")
+
 function buttonDisplay() {
     if(aliveStatus === "alive"){
         tapButton.style.display = ""
@@ -43,8 +48,12 @@ function buttonDisplay() {
 function gameState() {
 
     handEl.textContent = "Cards: "
-    for (let i = 0; i < cards.length; i++ ) {
-        handEl.textContent += cards[i] + " "
+    for (let i = 0; i < player.cards.length; i++ ) {
+        handEl.textContent += player.cards[i] + " "
+    }
+    dealerEl.textContent = "Dealer: "
+    for (let i = 0; i < dealer.cards.length; i++ ) {
+        dealerEl.textContent += dealer.cards[i] + " "
     }
 
 
@@ -68,20 +77,23 @@ if (hand < 21) {
 }
 
 function startNewGame() {
+    buttonDisplay()
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
-    cards = [firstCard, secondCard]
+    let dealerTopCard = getRandomCard()
+    dealer.cards = [dealerTopCard]
+    player.cards = [firstCard, secondCard]
     hand = firstCard + secondCard
-
     gameState()
-    console.log(cards)
+    console.log(player.cards)
     
 }
 
 function tap() {
     let newCard = getRandomCard()
     hand += newCard
-    cards.push(newCard)
+    player.cards.push(newCard)
     gameState()
-    console.log(cards)
+    console.log(player.cards)
+   
 }
