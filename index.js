@@ -8,7 +8,7 @@ let cards = [firstCard, secondCard]
 let hand = firstCard + secondCard 
 aliveStatus = ""
 message = ""
-showHand = "You have a " + firstCard + " & a " + secondCard
+// showHand = "You have a " + firstCard + " & a " + secondCard
 
 // Messages
 let messageEl = document.getElementById("message-el")
@@ -32,6 +32,12 @@ function buttonDisplay() {
 
 function gameState() {
 
+    handEl.textContent = "Cards: "
+    for (let i = 0; i < cards.length; i += 1) {
+        handEl.textContent += cards[i] + " "
+    }
+
+
 if (hand < 21) {
     message = "Tap or Hold?"
     aliveStatus = "alive"
@@ -45,7 +51,6 @@ if (hand < 21) {
     aliveStatus = "lost"
 
 }
-    handEl.textContent = showHand;
     messageEl.textContent = message
     buttonDisplay()
 }
@@ -53,15 +58,17 @@ if (hand < 21) {
 function startNewGame() {
     cards = [firstCard, secondCard]
     hand = firstCard + secondCard
-    showHand = "Cards: " + firstCard + " " + secondCard
+    // showHand = "Cards: " + firstCard + " " + secondCard
     gameState()
     console.log(cards)
+    
 }
 
 function tap() {
     hand += newCard
     cards.push(newCard)
-    showHand += " " + newCard
+    // showHand += " " + newCard
     gameState()
     console.log(cards)
+   
 }
