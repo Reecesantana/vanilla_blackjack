@@ -25,7 +25,3 @@ button {
 button:hover {
     color: rgb(2, 87, 2);
 }
-
-#tapButton {
-display: none;
-}
