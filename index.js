@@ -1,11 +1,21 @@
 // Cards
-let firstCard = 10
-let secondCard = 6
-let newCard = 3
+let deck = ["A",2,3,4,5,6,7,8,9,10,"J","Q","K"]
+
+function getRandomCard() {
+    let card = Math.floor(Math.random() * 13) + 1
+    if(card === 1) {
+        return card = 11
+    } else if(card > 10) {
+        return card = 10
+    } else {
+        return card
+    }
+    
+}
+
+
 
 // Card Status
-let cards = [firstCard, secondCard]
-let hand = firstCard + secondCard 
 aliveStatus = ""
 message = ""
 
@@ -53,9 +63,13 @@ if (hand < 21) {
 }
     messageEl.textContent = message
     buttonDisplay()
+    getRandomCard()
+
 }
 
 function startNewGame() {
+    let firstCard = getRandomCard()
+    let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
     hand = firstCard + secondCard
 
@@ -65,9 +79,9 @@ function startNewGame() {
 }
 
 function tap() {
+    let newCard = getRandomCard()
     hand += newCard
     cards.push(newCard)
     gameState()
     console.log(cards)
-   
 }
